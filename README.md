@@ -1,0 +1,3 @@
+Add a .env the project root containing the following if you want this automation framework to automatically apply for jobs for you.
+
+CWJOBSPASSWORD="changeme"

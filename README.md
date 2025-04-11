@@ -2,4 +2,4 @@
 
 > `CWJOBSPASSWORD="changeme"`
 
-2. Logged in assertions ('Hi, Alex') need to be changed to your first name.
+2. Change all instances of 'changeme' to your first name/email address/password.

@@ -1,21 +1,23 @@
+// Parking (skipping) due to ongoing changes with CWJobs test...
+
 /*
 * Essentially the same code but for CWJobs' sister site, separated out regardless
 * cy.wait is antipattern but necessary to simulate human behaviour on the given job site, avoiding rate limiters etc
 */
 
-import { runTimeStamp } from '../support/constants'
 import { searchTerms } from '../support/constants'
 import { jobInclusionList } from '../support/constants'
 import { jobExclusionList } from '../support/constants'
+import { getCurrentTime } from '../support/utilities'
 import { generateRandomNumber } from '../support/utilities'
 let ignoreList: string[] = []
 
-it('Total jobs', () => {
+it.skip('Total jobs', () => {
     cy.visit(Cypress.env('totalJobsUrl'))
     cy.wait(generateRandomNumber())
     cy.get('div#ccmgt_explicit_accept>div').click()
     cy.contains('Sign in').click()
-    cy.get('input[name="email"]').type('changeme@changeme.com')
+    cy.get('input[name="email"]').type('axdskhmd@hotmail.com')
     cy.get('input[name="password"]').type(Cypress.env('cwjobsPassword'))
     cy.get('button[data-testid="login-submit-btn"]').click()
     cy.wait(generateRandomNumber())
@@ -105,7 +107,7 @@ it('Total jobs', () => {
 
                                                                                                         if (!canApply) {
                                                                                                             manualApplicationsFileData.push({
-                                                                                                                timestamp: runTimeStamp,
+                                                                                                                timestamp: getCurrentTime,
                                                                                                                 searchTerm: searchTerm,
                                                                                                                 title: jobTitle,
                                                                                                                 url: jobLink,

@@ -1,7 +1,3 @@
-import dayjs from 'dayjs'
-
-export const runTimeStamp = () => dayjs().format('DD/MM/YY HH:mm')
-
 export const searchTerms: string[] = [
     'test-analyst',
     'software-tester',
@@ -27,9 +23,11 @@ export const jobInclusionList: string[] = [
 ]
 
 export const jobExclusionList: string[] = [
+    'Dynamics 365',
+    'D365',
     'contract',
     'consultant',
-    'manager',
+    'penetration',
     'labview',
     'international travel',
     'client travel',
@@ -45,9 +43,11 @@ export const jobExclusionList: string[] = [
     'construction',
     'robot',
     'manufacturing',
+    'demonstrations',
     'mechanic',
     'microwave',
     'driving licence',
+    'dv clear',
     'warehouse',
     'medical devices'
 ]

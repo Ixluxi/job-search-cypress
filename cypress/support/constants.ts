@@ -1,3 +1,8 @@
+export enum FileActions {
+    GET,
+    SET
+}
+
 export const searchTerms: string[] = [
     'test-analyst',
     'software-tester',

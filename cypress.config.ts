@@ -1,55 +1,44 @@
 import { defineConfig } from 'cypress'
 import path from 'path'
 import fs from 'fs'
+import { FileActions } from './cypress/support/constants'
 import dotenv from 'dotenv'
 dotenv.config()
+
+interface GetSetFileContentsObject {
+  fileAction: FileActions; 
+  fileName: string; 
+  data?: object
+}
 
 export default defineConfig({
   e2e: {
     specPattern: 'cypress/jobs/*.ts',
     chromeWebSecurity: false,
+    pageLoadTimeout: 120000,
     setupNodeEvents(on, config) {
       on('task', {
         log(message) {
           console.log(message)
           return null
         },
-        getFileContents(type: string) {
-          let fileName
-
-          switch (type) {
-            case 'ignore':
-              fileName = type
-              break
-            case 'manualApplications':
-              fileName = 'apply-manually'
-              break
-            default: throw new Error(`Invalid type (${type}).`)
+        getSetFileContents({ fileAction, fileName, data = {} }: GetSetFileContentsObject) {
+          if (fileName != 'ignore' && fileName != 'investigate') {
+            throw new Error(`Unexpected file name (${fileName}).`)
           }
 
-          const applicationsPath = path.join(process.cwd() + `\\cypress\\fixtures\\${fileName}.json`)
-          const fileData = JSON.parse(fs.readFileSync(applicationsPath, 'utf8'))
+          const filePath = path.join(process.cwd() + `\\cypress\\fixtures\\${fileName}.json`)
 
-          return fileData
-        },
-        setFileContents({ data = {}, type = '' }) {
-          let fileName
-
-          switch (type) {
-            case 'ignore':
-              fileName = type
-              break
-            case 'manualApplications':
-              fileName = 'apply-manually'
-              break
-            default: throw new Error(`Invalid type (${type}).`)
+          if (fileAction == FileActions.GET) {
+            const fileData = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+            return fileData
           }
 
-          const applicationsPath = path.join(process.cwd() + `\\cypress\\fixtures\\${fileName}.json`)
-          fs.writeFileSync(applicationsPath, JSON.stringify(data))
-          
-          return null
-        },
+          if (fileAction == FileActions.SET) {
+            fs.writeFileSync(filePath, JSON.stringify(data))
+            return null
+          }
+        }
       })
     },
     env: {

@@ -5,11 +5,11 @@
 2. Add an .env file to the project root containing the following.
 
 ```
-CWJOBSPASSWORD="changeme"
-TOTALJOBSPASSWORD="changeme"
+APPLICANTFIRSTNAME="changeme"
 CWJOBSUSERNAME="changeme"
 TOTALJOBSUSERNAME="changeme"
-APPLICANTFIRSTNAME="changeme"
+WJOBSPASSWORD="changeme"
+TOTALJOBSPASSWORD="changeme"
 ```
 
 3. Change all instances of 'changeme' to your details.

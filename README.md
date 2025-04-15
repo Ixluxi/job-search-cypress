@@ -8,7 +8,7 @@
 APPLICANTFIRSTNAME="changeme"
 CWJOBSUSERNAME="changeme"
 TOTALJOBSUSERNAME="changeme"
-WJOBSPASSWORD="changeme"
+CWJOBSPASSWORD="changeme"
 TOTALJOBSPASSWORD="changeme"
 ```
 
